@@ -1,0 +1,15 @@
+services:
+  api:
+    # Constrói a imagem a partir do Dockerfile no diretório atual (.)
+    build: .
+    container_name: imersao_devops_api
+    # Comando para rodar a aplicação com --reload, que reinicia o servidor
+    # automaticamente a cada alteração no código.
+    command: uvicorn app:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      # Mapeia o diretório atual do seu computador para o diretório /app no contêiner.
+      # Isso é essencial para que o --reload funcione.
+      - .:/app
+    ports:
+      # Mapeia a porta 8000 do seu computador para a porta 8000 do contêiner.
+      - "8000:8000"
